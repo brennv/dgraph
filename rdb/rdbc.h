@@ -78,6 +78,7 @@ void rdb_options_set_block_based_table_factory(
     rdb_options_t *opt,
     rdb_block_based_table_options_t* table_options);
 void rdb_options_prepare_for_bulk_load(rdb_options_t* opt);
+void rdb_options_set_max_background_compactions(rdb_options_t* opt, int n);
 
 //////////////////////////// rdb_readoptions_t
 rdb_readoptions_t* rdb_readoptions_create();

@@ -35,11 +35,15 @@ type Store struct {
 }
 
 type StoreOptions struct {
-	BulkLoad bool
+	BulkLoad                 bool
+	MaxBackgroundCompactions int
 }
 
 func NewDefaultOptions() *StoreOptions {
-	return &StoreOptions{}
+	return &StoreOptions{
+		BulkLoad:                 false,
+		MaxBackgroundCompactions: 1,
+	}
 }
 
 // setOpts prepares options for new rdb.DB. As we add more vars, we may need our

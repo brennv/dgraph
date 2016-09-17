@@ -217,6 +217,10 @@ void rdb_options_prepare_for_bulk_load(rdb_options_t* opt) {
   opt->rep.PrepareForBulkLoad();
 }
 
+void rdb_options_set_max_background_compactions(rdb_options_t* opt, int n) {
+  opt->rep.max_background_compactions = n;
+}
+
 //////////////////////////// rdb_readoptions_t
 rdb_readoptions_t* rdb_readoptions_create() {
   return new rdb_readoptions_t;

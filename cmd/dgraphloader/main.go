@@ -48,7 +48,10 @@ var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to file")
 var memprofile = flag.String("memprofile", "", "write memory profile to file")
 var numcpu = flag.Int("numCpu", runtime.NumCPU(),
 	"Number of cores to be used by the process")
-var bulkload = flag.Bool("bulkload", false, "Turn on rocksdb bulkload")
+
+var bulkload = flag.Bool("bulkload", false, "rocksdb bulkload")
+var maxBackgroundCompactions = flag.Int("mbc", 1,
+	"rocksdb max background compactions")
 
 func main() {
 	x.Init()
@@ -81,7 +84,10 @@ func main() {
 	}
 
 	dataStore, err := store.NewStoreWithOptions(*postingDir,
-		&store.StoreOptions{BulkLoad: *bulkload})
+		&store.StoreOptions{
+			BulkLoad:                 *bulkload,
+			MaxBackgroundCompactions: *maxBackgroundCompactions,
+		})
 	if err != nil {
 		glog.Fatalf("Fail to initialize dataStore: %v", err)
 	}

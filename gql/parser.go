@@ -34,6 +34,7 @@ type GraphQuery struct {
 	Attr     string
 	Args     map[string]string
 	Children []*GraphQuery
+	Filters  []*GraphQuery
 
 	// Internal fields below.
 	// If gq.fragment is nonempty, then it is a fragment reference / spread.
@@ -627,7 +628,11 @@ func godeep(l *lex.Lexer, gq *GraphQuery) error {
 				Args: make(map[string]string),
 				Attr: item.Val,
 			}
-			gq.Children = append(gq.Children, child)
+			if item.Val == "filter" {
+				gq.Filters = append(gq.Filters, child)
+			} else {
+				gq.Children = append(gq.Children, child)
+			}
 			curp = child
 
 		} else if item.Typ == itemLeftCurl {

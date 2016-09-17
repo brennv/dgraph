@@ -42,8 +42,8 @@ type indexConfigs struct {
 }
 
 type indexConfig struct {
-	Attr string `json:"attribute"`
-	// TODO(jchiu): Add other tokenizer here in future.
+	Attr      string `json:"attribute"`
+	Tokenizer string `json:"tokenizer"`
 }
 
 var (

@@ -42,3 +42,11 @@ func (opts *Options) SetBlockBasedTableFactory(value *BlockBasedTableOptions) {
 func (opts *Options) PrepareForBulkLoad() {
 	C.rdb_options_prepare_for_bulk_load(opts.c)
 }
+
+// SetMaxBackgroundCompactions sets the maximum number of
+// concurrent background jobs, submitted to
+// the default LOW priority thread pool
+// Default: 1
+func (opts *Options) SetMaxBackgroundCompactions(value int) {
+	C.rdb_options_set_max_background_compactions(opts.c, C.int(value))
+}
