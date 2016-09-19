@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	dbPath1 = "/tmp/testdbn"
-	dbPath2 = "/tmp/testdbn2"
+	dbPath1 = "/tmp/testdbs"
+	dbPath2 = "/tmp/testdbs2"
 )
 
 func randStr() []byte {
@@ -34,11 +34,11 @@ func main() {
 	go func() {
 		// Make sure we start after we save checkpoint.
 		time.Sleep(10 * time.Millisecond)
-		for i := 0; i < 123456; i++ {
+		for i := 0; i < 2000000; i++ {
 			if (i % 10000) == 0 {
 				fmt.Printf("SetOne %d\n", i)
 			}
-			if i >= 110000 {
+			if i < 230000 {
 				st.SetOne([]byte("aaaaa"), []byte("old"))
 			} else {
 				st.SetOne([]byte("aaaaa"), []byte("new"))
