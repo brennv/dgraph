@@ -134,3 +134,7 @@ func (s *Store) WriteBatch(wb *rdb.WriteBatch) error {
 	}
 	return nil
 }
+
+func (s *Store) NewCheckpoint() (*rdb.Checkpoint, error) {
+	return s.db.NewCheckpoint()
+}

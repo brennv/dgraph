@@ -36,7 +36,7 @@ func (db *DB) NewCheckpoint() (*Checkpoint, error) {
 }
 
 // Open builds openable snapshot of RocksDB on disk.
-func (s *Checkpoint) Open(checkpointDir string) error {
+func (s *Checkpoint) Save(checkpointDir string) error {
 	var (
 		cErr *C.char
 		cDir = C.CString(checkpointDir)
