@@ -138,3 +138,7 @@ func (s *Store) WriteBatch(wb *rdb.WriteBatch) error {
 func (s *Store) NewCheckpoint() (*rdb.Checkpoint, error) {
 	return s.db.NewCheckpoint()
 }
+
+func (s *Store) NewSnapshot() *rdb.Snapshot {
+	return s.db.NewSnapshot()
+}
