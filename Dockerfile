@@ -21,8 +21,9 @@ ENV LD_LIBRARY_PATH "/usr/local/lib"
 # Install Dgraph and update dependencies to right versions.
 RUN go get -v github.com/dgraph-io/dgraph/... && \
     go build -v github.com/dgraph-io/dgraph/... && \
-    go test github.com/dgraph-io/dgraph/... && echo "v0.3"
+    go test github.com/dgraph-io/dgraph/...
 
 # Create the dgraph and data directory. These directories should be mapped
 # to host machine for persistence.
-RUN mkdir /dgraph && mkdir /data
+RUN mkdir /dgraph/m && mkdir /data
+RUN server --mutations /dgraph/m --postings /dgraph/p --uids /dgraph/u
